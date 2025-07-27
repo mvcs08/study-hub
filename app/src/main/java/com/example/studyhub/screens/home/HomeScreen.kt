@@ -1,11 +1,8 @@
 package com.example.studyhub.screens.home
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -15,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.example.studyhub.ui.theme.StudyhubTheme
 
 @Composable
-fun HomeScreen(userName: String = "João") {
+fun HomeScreen(userName: String = "João", onNavigateToProvas: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -87,7 +83,12 @@ fun HomeScreen(userName: String = "João") {
         // AÇÕES (CARDS)
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                HomeCard(icon = Icons.Default.Assignment, title = "Provas Anteriores", subtitle = "Acesse provas antigas")
+                HomeCard(
+                    icon = Icons.Default.Assignment,
+                    title = "Provas Anteriores",
+                    subtitle = "Acesse provas antigas",
+                    onClick = onNavigateToProvas
+                )
                 HomeCard(icon = Icons.Default.Storage, title = "Banco de Questões", subtitle = "Pratique exercícios")
             }
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -99,11 +100,11 @@ fun HomeScreen(userName: String = "João") {
 }
 
 @Composable
-fun HomeCard(icon: ImageVector, title: String, subtitle: String) {
+fun HomeCard(icon: ImageVector, title: String, subtitle: String, onClick: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .height(120.dp)
-            .clickable { /* TODO: Navegar */ },
+            .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {

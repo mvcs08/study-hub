@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.example.studyhub.ui.theme.StudyhubTheme
 
 @Composable
-fun LoginScreen(onCreateAccountClick: () -> Unit) {
+fun LoginScreen(onCreateAccountClick: () -> Unit, onEmailLoginClick: () -> Unit) {
     Surface(color = Color.White){
         Column(
             modifier = Modifier
@@ -68,7 +68,7 @@ fun LoginScreen(onCreateAccountClick: () -> Unit) {
             // Buttons
 
             Button(
-                onClick = {},
+                onClick = onEmailLoginClick,
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF1A1A1A),
@@ -112,6 +112,6 @@ fun LoginScreen(onCreateAccountClick: () -> Unit) {
 @Preview
 fun LoginPreview(){
     StudyhubTheme {
-        LoginScreen(onCreateAccountClick = {})
+        LoginScreen(onCreateAccountClick = {}, onEmailLoginClick = {})
     }
 }
